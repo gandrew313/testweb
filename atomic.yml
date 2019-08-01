@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Ensure httpd is installed
+    yum:
+      name: httpd
+      state: latest
+    become: yes
+  - name: Ensure php is installed
+    yum:
+      name: php
+      state: latest
+    become: yes
+  - name: enable service httpd and ensure it's not masked
+    systemd:
+      name: httpd
+      enabled: yes
+      masked: no
+    become: yes 
